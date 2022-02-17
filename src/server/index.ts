@@ -1,5 +1,6 @@
 import { Client } from 'discord.js';
 import * as dotenv from 'dotenv';
+import { helpCommand } from './command';
 
 dotenv.config();
 const token = process.env.DISCORD_TOKEN;
@@ -13,6 +14,8 @@ const client = new Client({
 });
 
 void client.login(token);
+
+helpCommand(client);
 
 client.on('ready', () => {
   if (!client.user) return;
