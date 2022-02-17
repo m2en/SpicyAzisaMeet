@@ -1,7 +1,7 @@
 import { Command } from '../format';
 
-export const countCommand: Command = {
-  name: 'count',
+export const guildCommand: Command = {
+  name: 'guild',
   description: 'サーバーの人数などを確認します',
   options: []
 };
