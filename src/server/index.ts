@@ -1,6 +1,6 @@
 import { Client } from 'discord.js';
 import * as dotenv from 'dotenv';
-import { helpCommand, whoisCommand } from './command';
+import { helpCommand, orderCommand, whoisCommand } from './command';
 import { memberJoinEvent } from './event/memberJoinEvent';
 
 dotenv.config();
@@ -19,6 +19,7 @@ void client.login(token);
 
 helpCommand(client);
 whoisCommand(client);
+orderCommand(client);
 // ----
 memberJoinEvent(client);
 
