@@ -1,6 +1,7 @@
 import { Client, Guild, Interaction, MessageEmbed } from 'discord.js';
 import { selectServerButtonId } from '../orderModel/selectServer';
 import { logChannelId, unknownServerRoleId } from '../index';
+import { addRoleReason } from '../command/message/message';
 
 async function getButtonInteraction(interaction: Interaction) {
   const addRoleGuild = interaction.guild;
@@ -35,7 +36,6 @@ async function addRole(
   addRoleGuild: Guild,
   interaction: Interaction
 ) {
-  const addRoleReason = '面接サーバーを選択しました。';
   if (!addRoleGuild) {
     throw new Error('ロールを検索するギルドを取得することができませんでした。');
   }
