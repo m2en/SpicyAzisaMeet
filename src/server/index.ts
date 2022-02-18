@@ -7,12 +7,14 @@ import {
   whoisCommand
 } from './command';
 import { memberJoinEvent } from './event/memberJoinEvent';
+import { selectServerEvent } from './event/selectServerEvent';
 
 dotenv.config();
 const token = process.env.DISCORD_TOKEN;
 export const logChannelId = process.env.LOG_CHANNEL_ID;
 export const joinChannelId = process.env.JOIN_CHANNEL_ID;
-if (!token || !logChannelId || !joinChannelId) {
+export const unknownServerRoleId = process.env.UNKNOWN_SERVER_ID;
+if (!token || !logChannelId || !joinChannelId || !unknownServerRoleId) {
   throw new Error('環境変数が指定されておらず起動に失敗しました。');
 }
 
@@ -28,6 +30,7 @@ orderCommand(client);
 guildCommand(client);
 // ----
 memberJoinEvent(client);
+selectServerEvent(client);
 
 client.on('ready', () => {
   if (!client.user) return;
