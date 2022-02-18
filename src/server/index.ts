@@ -1,11 +1,13 @@
 import { Client } from 'discord.js';
 import * as dotenv from 'dotenv';
 import { helpCommand } from './command';
+import { memberJoinEvent } from './event/memberJoinEvent';
 
 dotenv.config();
 const token = process.env.DISCORD_TOKEN;
-const logChannelId = process.env.LOG_CHANNEL_ID;
-if (!token || !logChannelId) {
+export const logChannelId = process.env.LOG_CHANNEL_ID;
+export const joinChannelId = process.env.JOIN_CHANNEL_ID;
+if (!token || !logChannelId || !joinChannelId) {
   throw new Error('環境変数が指定されておらず起動に失敗しました。');
 }
 
@@ -16,6 +18,8 @@ const client = new Client({
 void client.login(token);
 
 helpCommand(client);
+// ----
+memberJoinEvent(client);
 
 client.on('ready', () => {
   if (!client.user) return;

@@ -41,9 +41,19 @@ export const selectServer = new MessageActionRow().setComponents([
       value: 'jg'
     },
     {
+      label: 'Conflict',
+      description: '* (説明無し) *',
+      value: 'conflict'
+    },
+    {
       label: 'CardianPVP',
       description: '* (説明なし) *',
       value: 'cp'
+    },
+    {
+      label: 'その他',
+      description: 'このリストにないサーバーを選択する',
+      value: '希望先未決定'
     }
   ])
 ]);
