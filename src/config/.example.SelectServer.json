@@ -1,0 +1,9 @@
+{
+  "selectServerData": [
+    {
+      "label": "その他",
+      "description": "このリストにないサーバーを選択する",
+      "value": "希望先未決定"
+    }
+  ]
+}
