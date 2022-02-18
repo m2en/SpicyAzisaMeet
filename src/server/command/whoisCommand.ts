@@ -5,6 +5,8 @@ import {
   MessageEmbed,
   User
 } from 'discord.js';
+import { aziAdminRoleId } from '../index';
+import { commandPermissionErrorMsg } from './message/message';
 
 function getGuildMemberInfo(
   guildMember: GuildMember,
@@ -59,6 +61,16 @@ function getGuildMemberInfo(
 async function runCommand(client: Client, interaction: Interaction) {
   if (!interaction.isCommand() || !interaction.guild) return;
   if (interaction.commandName !== 'whois') return;
+
+  const commandAuthorMember = await interaction.guild.members.fetch(
+    `${interaction.user.id}`
+  );
+  if (!commandAuthorMember) return;
+  if (!commandAuthorMember.roles.cache.get(String(aziAdminRoleId))) {
+    await interaction.reply({ content: commandPermissionErrorMsg });
+    return;
+  }
+
   const target = interaction.options.getUser('target');
   if (!target) return;
 

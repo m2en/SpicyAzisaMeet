@@ -1,8 +1,19 @@
 import { Client, Guild, Interaction, MessageEmbed } from 'discord.js';
+import { aziAdminRoleId } from '../index';
+import { commandPermissionErrorMsg } from './message/message';
 
 async function getCommand(interaction: Interaction, createEmbed: MessageEmbed) {
   if (!interaction.guild || !interaction.isCommand()) return;
   if (interaction.commandName !== 'guild') return;
+
+  const commandAuthorMember = await interaction.guild.members.fetch(
+    `${interaction.user.id}`
+  );
+  if (!commandAuthorMember) return;
+  if (!commandAuthorMember.roles.cache.get(String(aziAdminRoleId))) {
+    await interaction.reply({ content: commandPermissionErrorMsg });
+    return;
+  }
 
   await interaction.reply({ embeds: [createEmbed] });
 }
