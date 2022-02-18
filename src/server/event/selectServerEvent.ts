@@ -60,10 +60,10 @@ async function addRole(
     await selectAuthor.roles.add(unknownServerRole, addRoleReason);
   }
 
-  // "addRoleGuild" から "(選択サーバー)希望者" を取得する
+  // "addRoleGuild" から "(選択サーバー)面接希望者" を取得する
   // なんかエラー出る, いつか直す
   const addRole = addRoleGuild.roles.cache.find(
-    (role) => role.name === String(getButton) + '希望者'
+    (role) => role.name === String(getButton) + '面接希望者'
   );
   if (!addRole) {
     throw new Error(
