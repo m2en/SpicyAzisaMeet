@@ -118,3 +118,4 @@ dist
 
 # typescript
 build/
+src/config/SelectServer.json
