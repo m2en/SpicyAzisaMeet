@@ -1,6 +1,12 @@
 name: prettier
 
-on: pull_request
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: '33 23 * * 5'
 
 jobs:
   run_eslint:
